@@ -4,7 +4,7 @@ export function dateToString(date: Date): string {
     '-' +
     pseudoPadStart((date.getMonth() + 1).toString(), 2, '0') +
     '-' +
-    pseudoPadStart((date.getDate() + 1).toString(), 2, '0')
+    pseudoPadStart(date.getDate().toString(), 2, '0')
   );
 }
 

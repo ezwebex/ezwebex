@@ -37,12 +37,11 @@ const Timetable: React.FC<DateProps> = (props: DateProps) => {
   useEffect(() => {
     fetch(
       'https://att.gachon.ac.kr/ajax/ST_SALA02_SVC/ST_SALA02_R01.do?FROM_YMD=' +
-        dateToString(props.date) /* + '&DT=' + dateToString(props.date)*/,
+        dateToString(props.date) + '&DT=' + dateToString(props.date),
       {
         method: 'POST',
         headers: {
-          Cookie:
-            'SCOUTER AND JSESSION ID by GENERATING IT',
+          Cookie: ''
         },
       },
     )
@@ -72,6 +71,8 @@ const Timetable: React.FC<DateProps> = (props: DateProps) => {
             }
           }
           console.warn('CALLED!');
+
+          timetable.sort((a, b) => a.startTime - b.startTime);
 
           setTimetable(timetable);
           setLoading(false);
