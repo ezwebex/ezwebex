@@ -12,7 +12,13 @@ const App = () => {
     <>
       <NavigationContainer>
         <StackNav.Navigator>
-          <StackNav.Screen name="Main" component={Main} />
+          <StackNav.Screen
+            name="Main"
+            component={Main}
+            options={{
+              title: 'WebEx',
+            }}
+          />
           <StackNav.Screen name="Timetable" component={Timetable} />
         </StackNav.Navigator>
       </NavigationContainer>

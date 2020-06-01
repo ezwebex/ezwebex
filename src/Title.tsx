@@ -11,11 +11,11 @@ const Title: React.FC = (props) => {
 
 const style = StyleSheet.create({
   title: {
-    fontSize: 40,
+    fontSize: 60,
     textAlign: 'left',
+    marginTop: '40%',
   },
   wrapper: {
-    backgroundColor: 'red',
     textAlignVertical: 'center',
     marginVertical: 'auto',
   },

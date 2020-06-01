@@ -13,11 +13,15 @@ const style = StyleSheet.create({
   wrapper: {
     flex: 1,
     padding: 25,
+    textAlignVertical: 'center',
   },
   content_wrapper: {
-    flex: 1,
+    flex: 2,
     padding: 25,
     alignItems: 'stretch',
+  },
+  button_text: {
+    fontSize: 20,
   },
 });
 
@@ -27,19 +31,18 @@ const Main: React.FC = (props) => {
       <View style={style.wrapper}>
         <Title>EzWebex</Title>
       </View>
-      <View style={style.wrapper}>
+      <View style={style.content_wrapper}>
         <CustomButton
           onPress={() => {
-            Alert.alert('시간표 열기');
             props.navigation.navigate('Timetable');
           }}>
-          <Text>시간표 보기</Text>
+          <Text style={style.button_text}>시간표 보기</Text>
         </CustomButton>
         <CustomButton
           onPress={() => {
             Alert.alert('wasans');
           }}>
-          <Text>강의실 직접접속</Text>
+          <Text style={style.button_text}>강의실 직접접속</Text>
         </CustomButton>
       </View>
     </SafeAreaView>

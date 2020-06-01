@@ -9,14 +9,14 @@ const style = StyleSheet.create({
   customButton: {
     padding: 25,
     textAlign: 'center',
-    backgroundColor: 'green',
+    backgroundColor: '#AAE',
     alignContent: 'center',
-    marginVertical: 5
+    marginVertical: 5,
   },
   center: {
-    alignSelf: 'center'
-  }
-})
+    alignSelf: 'center',
+  },
+});
 
 const CustomButton: React.FC<ButtonProps> = (props) => {
   return (
