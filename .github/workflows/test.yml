@@ -34,3 +34,12 @@ jobs:
     - name: Install dependencies
       run: |
         yarn
+    - name: React Native Android Build APK
+      uses: realabbas/Github-Actions-React-Native@v1.1.2
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: apk
+        # A file, directory or wildcard pattern that describes what to upload
+        path: artifacts/*.apk
