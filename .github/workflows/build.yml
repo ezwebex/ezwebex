@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: React Native Tester
+name: React Native Builder
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -25,6 +25,12 @@ jobs:
       uses: actions/setup-node@v1.4.2
       with:
         node-version: 12.x
+        
+    - name: Setup Java JDK
+      uses: actions/setup-java@v1.3.0
+      with:
+        # The Java version to make available on the path. Takes a whole or semver Java version, or 1.x syntax (e.g. 1.8 => Java 8.x)
+        java-version: 1.12
 
     # Runs a single command using the runners shell
     - name: Install Yarn
@@ -34,8 +40,12 @@ jobs:
     - name: Install dependencies
       run: |
         yarn
-    - name: React Native Android Build APK
-      uses: realabbas/Github-Actions-React-Native@v1.1.2
+    - name: Make Gradlew Executable
+      run: cd android && chmod +x ./gradlew
+      # Build Command
+    - name: Build Android Release
+      run: |
+        cd android && ./gradlew assembleRelease
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2
       with:
