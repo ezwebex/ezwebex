@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Main from './src/Screens/main';
 import Timetable from './src/Screens/timetable';
+import Login from './src/Screens/timetable/login';
 
 const StackNav = createStackNavigator();
 
@@ -20,6 +21,7 @@ const App = () => {
             }}
           />
           <StackNav.Screen name="Timetable" component={Timetable} />
+          <StackNav.Screen name="Login" component={Login} />
         </StackNav.Navigator>
       </NavigationContainer>
     </>

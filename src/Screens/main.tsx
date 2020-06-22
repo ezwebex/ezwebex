@@ -44,6 +44,12 @@ const Main: React.FC = (props) => {
           }}>
           <Text style={style.button_text}>강의실 직접접속</Text>
         </CustomButton>
+        <CustomButton
+          onPress={() => {
+            props.navigation.navigate('Login');
+          }}>
+          <Text style={style.button_text}>로그인</Text>
+        </CustomButton>
       </View>
     </SafeAreaView>
   );

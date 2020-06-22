@@ -24,13 +24,13 @@ interface TimetableFormat {
   professorCode: number;
 }
 
-const Main: React.FC = () => {
+const Main: React.FC = (props) => {
   const date = new Date();
 
   return (
     <SafeAreaView>
       <TodayDate date={date} />
-      <Timetable date={date} />
+      <Timetable date={date} navigation={props.navigation} />
     </SafeAreaView>
   );
 };
