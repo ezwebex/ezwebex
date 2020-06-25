@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import Timetable from './timetable';
 import TodayDate from './date';
@@ -25,11 +25,18 @@ interface TimetableFormat {
 }
 
 const Main: React.FC = (props) => {
-  const date = new Date();
+  
+  const [date, setDate] = useState(new Date());
 
   return (
     <SafeAreaView>
-      <TodayDate date={date} />
+      <TodayDate
+        date={date}
+        onUpdate={((date: Date) => {
+          setDate(date);
+          console.warn("New Update", date); 
+        })
+      } />
       <Timetable date={date} navigation={props.navigation} />
     </SafeAreaView>
   );

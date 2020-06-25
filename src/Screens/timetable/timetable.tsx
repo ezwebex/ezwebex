@@ -1,4 +1,4 @@
-import {DateProps} from './interface';
+import {MiscellaneousProps, ClassElement} from './interface';
 import React, {useState, useEffect} from 'react';
 import {
   Alert,
@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
   StyleSheet,
 } from 'react-native';
-import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import {FlatList, ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import {dateToString} from './common';
 import * as Keychain from 'react-native-keychain';
 
@@ -33,13 +33,13 @@ import tough from 'tough-cookie';
 
 axiosCookieJarSupport(axios);
 
-const Timetable: React.FC<DateProps> = (props: DateProps) => {
+const Timetable: React.FC<MiscellaneousProps> = (props: MiscellaneousProps) => {
   const navigation = props.navigation;
 
   const [getLoading, setLoading] = useState(true);
   const [getTimetable, setTimetable] = useState([]);
 
-  const timetable = [];
+  const timetable: ClassElement[] = [];
 
   useEffect(() => {
     Keychain.getGenericPassword().then((credentials) => {
@@ -129,13 +129,20 @@ const Timetable: React.FC<DateProps> = (props: DateProps) => {
   ) : (
     <>
       {getTimetable.map((elem) => (
-        <View style={style.timetableItem}>
-          <Text style={style.timetableName}>{elem.name}</Text>
-          <Text>
-            <Text>{elem.startTime}</Text> - <Text>{elem.endTime}</Text>
-            <Text> / {elem.professorName}</Text>
-          </Text>
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('ClassInfo', {
+              thisClass: elem,
+            });
+          }}>
+          <View style={style.timetableItem}>
+            <Text style={style.timetableName}>{elem.name}</Text>
+            <Text>
+              <Text>{elem.startTime}</Text> - <Text>{elem.endTime}</Text>
+              <Text> / {elem.professorName} ({elem.professorCode})</Text>
+            </Text>
+          </View>
+        </TouchableOpacity>
       ))}
     </>
   );

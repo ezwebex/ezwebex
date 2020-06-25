@@ -13,7 +13,7 @@ const style = StyleSheet.create({
   title: {
     fontSize: 60,
     textAlign: 'left',
-    marginTop: '40%',
+    marginTop: '20%',
   },
   wrapper: {
     textAlignVertical: 'center',
