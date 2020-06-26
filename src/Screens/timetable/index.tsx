@@ -13,6 +13,26 @@ const style = StyleSheet.create({
     padding: 25,
     alignItems: 'stretch',
   },
+  date_wrapper: {
+    backgroundColor: '#CCC',
+    padding: 20,
+
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  date_text: {
+    fontSize: 20,
+    alignSelf: 'center',
+  },
+  date_month: {
+    fontWeight: 'bold',
+  },
+  date_day: {
+    fontWeight: 'bold',
+  },
+  dateUpdateButton: {
+    fontSize: 20,
+  },
 });
 
 interface TimetableFormat {
@@ -26,7 +46,7 @@ interface TimetableFormat {
 
 const Main: React.FC = (props) => {
   
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date("2020-06-25T00:00:00"));
 
   return (
     <SafeAreaView>

@@ -42,7 +42,7 @@ const ClassInfo: React.FC = (props) => {
         <View>
           <TouchableOpacity style={style.webexButton} onPress={
             async () => {
-              console.warn("start!");
+              console.log("start!");
               const profLinkURL = `https://webex.g-c.kr/api/get_link.php?name=${thisClass.professorName}`;
               const profLinkData = await axios.get(profLinkURL);
               //const data = await axios.get(`https://webex.g-c.kr/api/get_link.php?name=${thisClass.professorName}&code=${thisClass.professorCode}`);
@@ -53,7 +53,7 @@ const ClassInfo: React.FC = (props) => {
                 return;
               }
 
-              console.warn(profLinkJSON);
+              console.log(profLinkJSON);
               const meetURL = profLinkJSON.data;
               const webexQuery = await axios.get(meetURL, {
                 headers: {
@@ -61,21 +61,37 @@ const ClassInfo: React.FC = (props) => {
                 }
               });
 
-              console.warn(webexQuery);
+              console.log(webexQuery);
 
               const processed = /var url = '(.+)&TS='/.exec(webexQuery.data);
-              const tempURL = decodeURIComponent(processed[1].replace(/\\x/g,"%"));
-              console.warn(tempURL);
+              let tempURL = decodeURIComponent(processed[1].replace(/\\x/g,"%"));
+              console.log(tempURL);
 
               const queryPart = tempURL.split("?")[1];
-              const MK = getQueryVariable(queryPart, "meetingKey");
+              const meetingKey = getQueryVariable(queryPart, "meetingKey");
+              const ServerTS = getQueryVariable(queryPart, "ServerTS");
+              const rnd = getQueryVariable(queryPart, "rnd");
+              const TS = new Date().getTime();
 
-              const webexURL = "wbx://gachon.webex.com/gachon?MK="+MK;
+              const webexLinkURL = tempURL+"&TS="+TS+"&CookieSupported=false";
 
-              const isWebexInstalled = await Linking.canOpenURL(webexURL);
+              const webexLinkQuery = await axios.get(webexLinkURL, {
+                headers: {
+                  "User-Agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Mobile Safari/537.36"
+                }
+              });
+
+              console.log(webexLinkQuery);
+
+              const webexLinkIntentURLParsed = /<a href='wbx:\/\/(.+)' id=/.exec(webexLinkQuery.data);
+              const webexLinkIntentURL = "wbx://"+webexLinkIntentURLParsed[1];
+
+              console.warn(webexLinkIntentURL);
+
+              const isWebexInstalled = await Linking.canOpenURL(webexLinkIntentURL);
 
               if (isWebexInstalled) {
-                await Linking.openURL(webexURL);
+                await Linking.openURL(webexLinkIntentURL);
               } else {
                 Alert.alert("Webex 앱이 설치되어있지 않습니다!!");
               }
