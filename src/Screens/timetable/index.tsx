@@ -46,7 +46,7 @@ interface TimetableFormat {
 
 const Main: React.FC = (props) => {
   
-  const [date, setDate] = useState(new Date("2020-06-25T00:00:00"));
+  const [date, setDate] = useState(new Date());
 
   return (
     <SafeAreaView>
