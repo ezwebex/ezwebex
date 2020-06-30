@@ -11,9 +11,9 @@ React Native based... Cross-platform Cisco Webex® helper application for Cyber 
   (for securely saving user's username and password)
 
 ## Developers
-* SungYoon Ahn - Reverse Engineered webex Intent URL Generation Mechanism and Implemented in Application
+* SungYoon Ahn - Analysed webex Intent URL Generation Mechanism and Implemented in Application
 * Sanghui Park - Cross Platform building environment, repository scaffolding (with CI) and Implemented Server Side RestfulAPI for accessing professors' webex links.
-* Dongkyun Yun - Reverse Engineered [Gachon University Attendance System](https://att.gachon.ac.kr), Implemented timetable loading mechanism.
+* Dongkyun Yun - Analysed [Gachon University Attendance System](https://att.gachon.ac.kr), Implemented timetable loading mechanism.
 
 ## Demo
 [Demonstration Video](https://gachon.alex4386.me/mobile/demo.mp4). 
