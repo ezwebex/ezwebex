@@ -40,7 +40,7 @@ const Main: React.FC = (props) => {
         </CustomButton>
         <CustomButton
           onPress={() => {
-            Alert.alert('wasans');
+            props.navigation.navigate('Direct')
           }}>
           <Text style={style.button_text}>강의실 직접접속</Text>
         </CustomButton>
